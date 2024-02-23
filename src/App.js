@@ -16,6 +16,7 @@ import UserProfile from "./components/UserProfile";
 import UserContext from "./components/UserContext";
 import LogoutButton from "./components/LogoutButton";
 import ToDos from "./components/ToDos";
+import Attachments from "./components/Attachments";
 
 const provider = new GoogleAuthProvider();
 
@@ -35,7 +36,7 @@ const auth = getAuth(app);
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(false);
-
+  console.log(user.accessToken);
   onAuthStateChanged(auth, (user) => {
     if (user) {
       setIsLoggedIn(true);
@@ -70,6 +71,7 @@ function App() {
 
             {/* ToDos component example BYPASSES the API and performs CRUD operations direcly on the firestore */}
             <ToDos app={app} />
+            <Attachments />
           </div>
         </UserContext.Provider>
       ) : (
